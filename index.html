@@ -7,13 +7,13 @@
 
   <form action="">
     <label for="area">面积：</label><br>
-    <input type="number" id="area" name="area"><br>
+    <input type="number" step="0.01" id="area" name="area" required><br>
 
     <label for="rentUnitPrice">房租单价：</label><br>
-    <input type="number" id="rentUnitPrice" name="rentUnitPrice"><br>
+    <input type="number" step="0.01" id="rentUnitPrice" name="rentUnitPrice" required><br>
 
     <label for="freeMonths">免租月份：</label><br>
-    <input type="number" id="freeMonths" name="freeMonths" value="2"><br>
+    <input type="number" id="freeMonths" name="freeMonths" value="2" required><br>
 
     <input type="submit" value="计算">
   </form>
