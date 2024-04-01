@@ -31,8 +31,8 @@
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      // 验证输入是否为数字
-      if (!/^[0-9]+$/.test(area.value) ||!/^[0-9]+$/.test(rentUnitPrice.value) ||!/^[0-9]+$/.test(freeMonths.value)) {
+     // 验证输入是否为数字
+      if (!/^[0-9]+\.?[0-9]*$/.test(area.value) ||!/^[0-9]+\.?[0-9]*$/.test(rentUnitPrice.value) ||!/^[0-9]+$/.test(freeMonths.value)) {
         alert("请输入有效的数字");
         return;
       }
