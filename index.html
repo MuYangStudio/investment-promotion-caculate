@@ -25,21 +25,28 @@
     var area = document.getElementById("area");
     var rentUnitPrice = document.getElementById("rentUnitPrice");
     var freeMonths = document.getElementById("freeMonths");
-
+    // 获取表单元素
+    const form = document.querySelector('form');
     // 提交表单时的处理函数
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
+      // 验证输入是否为数字
+      if (!/^[0-9]+$/.test(area.value) ||!/^[0-9]+$/.test(rentUnitPrice.value) ||!/^[0-9]+$/.test(freeMonths.value)) {
+        alert("请输入有效的数字");
+        return;
+      }
+
       // 计算月租金
       var monthlyRent = area.value * rentUnitPrice.value * 365 / 12;
 
-      // 计算免租两个月后的月租金
-      var rentAfterFreeMonths = monthlyRent * 12 - freeMonths.value / 12;
+      // 计算免租几个月后的月租金
+      var rentAfterFreeMonths = monthlyRent * (12 - freeMonths.value) / 12;
 
       // 计算物业费
       var propertyFee = area.value * 10;
 
-      // 计算含物业费且免租两个月后的每平方单价
+      // 计算含物业费且免租几个月后的每平方单价
       var pricePerSquareWithFeeAndFreeMonths = (rentAfterFreeMonths + propertyFee) * 12 / 365 / area.value;
 
       // 计算免租对应月后的每平方单价
@@ -48,10 +55,10 @@
       // 在结果区域显示计算结果
       var result = `
         <p>月租金：${monthlyRent}</p>
-        <p>免租两个月后的月租金：${rentAfterFreeMonths}</p>
+        <p>免租${freeMonths.value}个月后的月租金：${rentAfterFreeMonths}</p>
         <p>物业费：${propertyFee}</p>
-        <p>含物业费且免租两个月后的每平方单价：${pricePerSquareWithFeeAndFreeMonths}</p>
-        <p>免租对应月后的每平方单价：${pricePerSquareAfterFreeMonths}</p>
+        <p>含物业费且免租${freeMonths.value}个月后的每平方单价：${pricePerSquareWithFeeAndFreeMonths}</p>
+        <p>免租${freeMonths.value}个月后的每平方单价：${pricePerSquareAfterFreeMonths}</p>
       `;
       document.getElementById("result").innerHTML = result;
     });
